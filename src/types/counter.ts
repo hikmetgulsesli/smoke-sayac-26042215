@@ -3,7 +3,8 @@ export type SayacAction =
   | { type: 'INCREMENT' }
   | { type: 'DECREMENT' }
   | { type: 'RESET' }
-  | { type: 'INIT'; value: number };
+  | { type: 'INIT'; value: number }
+  | { type: 'ERROR'; message: string };
 
 export interface SayacState {
   deger: number;
@@ -15,7 +16,6 @@ export interface SayacContext {
   state: SayacState;
   increment: () => void;
   decrement: () => void;
-  reset: () => void;
   onayDialogunuAc: () => void;
   onayDialogunuKapat: () => void;
   onaylaVeSifirla: () => void;

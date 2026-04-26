@@ -12,6 +12,8 @@ function sayacReducer(state: SayacState, action: SayacAction): SayacState {
       return { ...state, deger: 0, hata: null };
     case 'INIT':
       return { ...state, deger: action.value, yukleniyor: false, hata: null };
+    case 'ERROR':
+      return { ...state, hata: action.message, yukleniyor: false };
     default:
       return state;
   }
@@ -37,7 +39,7 @@ export function useCounter() {
         dispatch({ type: 'INIT', value: 0 });
       }
     } catch (_e) {
-      dispatch({ type: 'INIT', value: 0 });
+      dispatch({ type: 'ERROR', message: 'localStorage erişim hatası oluştu.' });
     }
   }, []);
 
@@ -47,7 +49,7 @@ export function useCounter() {
       try {
         sayaciYaz(state.deger);
       } catch (_e) {
-        // Hata durumunda sessizce devam et
+        dispatch({ type: 'ERROR', message: 'Veri kaydetme hatası oluştu.' });
       }
     }
   }, [state.deger, state.yukleniyor, state.hata]);
@@ -82,7 +84,7 @@ export function useCounter() {
       const kayitli = sayaciOku();
       dispatch({ type: 'INIT', value: kayitli ?? 0 });
     } catch (_e) {
-      dispatch({ type: 'INIT', value: 0 });
+      dispatch({ type: 'ERROR', message: 'localStorage erişim hatası oluştu.' });
     }
   }, []);
 
@@ -90,7 +92,6 @@ export function useCounter() {
     state,
     increment,
     decrement,
-    reset: onaylaVeSifirla,
     onayDialogunuAc,
     onayDialogunuKapat,
     onaylaVeSifirla,

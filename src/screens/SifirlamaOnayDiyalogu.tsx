@@ -25,7 +25,7 @@ export function SifirlamaOnayDiyalogu({ context }: SifirlamaOnayDiyaloguProps) {
       {/*  Simulated Counter App Content behind the modal  */}
       <div className="flex flex-col items-center gap-12 mt-12 w-full max-w-sm">
       <div className="flex flex-col items-center">
-      <span className="font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant mb-4">Total Counts</span>
+      <span className="font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant mb-4">Toplam Sayı</span>
       <h1 className="font-display text-[3.5rem] font-bold text-on-primary-container leading-none">{state.deger}</h1>
       </div>
       <div className="bg-surface-container rounded-xl w-full p-8 flex flex-col items-center pt-[32px] shadow-[0_0_40px_rgba(0,42,120,0.2)]">

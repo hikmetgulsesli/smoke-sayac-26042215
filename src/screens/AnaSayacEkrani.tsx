@@ -7,7 +7,6 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
-import { useState } from "react";
 
 import type { SayacContext } from '../types/counter';
 
