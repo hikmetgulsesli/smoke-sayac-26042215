@@ -9,9 +9,14 @@
 
 import { useState } from "react";
 
-interface HataDurumuEkraniProps {}
+import type { SayacContext } from '../types/counter';
 
-export function HataDurumuEkrani(props: HataDurumuEkraniProps) {
+interface HataDurumuEkraniProps {
+  context: SayacContext;
+}
+
+export function HataDurumuEkrani({ context }: HataDurumuEkraniProps) {
+  const { hataTemizle, yenidenDene } = context;
   return (
     <>
       {/*  Main Content Canvas  */}
@@ -41,11 +46,11 @@ export function HataDurumuEkrani(props: HataDurumuEkraniProps) {
       {/*  Action Area  */}
       <div className="relative z-10 w-full mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
       {/*  Primary Action (Continue)  */}
-      <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-bold rounded-lg tracking-wide hover:brightness-125 active:scale-95 transition-all duration-150 shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+      <button onClick={hataTemizle} className="w-full sm:w-auto px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-bold rounded-lg tracking-wide hover:brightness-125 active:scale-95 transition-transform duration-150 shadow-[0_0_20px_rgba(37,99,235,0.2)] cursor-pointer">
                           Devam Et
                       </button>
       {/*  Secondary Action (Retry)  */}
-      <button className="w-full sm:w-auto px-8 py-4 bg-surface-container text-on-surface-variant font-headline font-medium rounded-lg tracking-wide hover:bg-surface-container-high hover:text-on-surface ring-1 ring-outline-variant/20 active:scale-95 transition-all duration-150">
+      <button onClick={yenidenDene} className="w-full sm:w-auto px-8 py-4 bg-surface-container text-on-surface-variant font-headline font-medium rounded-lg tracking-wide hover:bg-surface-container-high hover:text-on-surface ring-1 ring-outline-variant/20 active:scale-95 transition-transform duration-150 cursor-pointer">
                           Yeniden Dene
                       </button>
       </div>

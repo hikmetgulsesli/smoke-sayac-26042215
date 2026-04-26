@@ -9,9 +9,14 @@
 
 import { useState } from "react";
 
-interface SifirlamaOnayDiyaloguProps {}
+import type { SayacContext } from '../types/counter';
 
-export function SifirlamaOnayDiyalogu(props: SifirlamaOnayDiyaloguProps) {
+interface SifirlamaOnayDiyaloguProps {
+  context: SayacContext;
+}
+
+export function SifirlamaOnayDiyalogu({ context }: SifirlamaOnayDiyaloguProps) {
+  const { state, onaylaVeSifirla, onayDialogunuKapat } = context;
   return (
     <>
       {/*  Top Navigation (Shell suppressed due to Transactional intent - Task-Focused)  */}
@@ -21,7 +26,7 @@ export function SifirlamaOnayDiyalogu(props: SifirlamaOnayDiyaloguProps) {
       <div className="flex flex-col items-center gap-12 mt-12 w-full max-w-sm">
       <div className="flex flex-col items-center">
       <span className="font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant mb-4">Total Counts</span>
-      <h1 className="font-display text-[3.5rem] font-bold text-on-primary-container leading-none">1,402</h1>
+      <h1 className="font-display text-[3.5rem] font-bold text-on-primary-container leading-none">{state.deger}</h1>
       </div>
       <div className="bg-surface-container rounded-xl w-full p-8 flex flex-col items-center pt-[32px] shadow-[0_0_40px_rgba(0,42,120,0.2)]">
       <div className="flex justify-between w-full gap-6">
@@ -52,10 +57,10 @@ export function SifirlamaOnayDiyalogu(props: SifirlamaOnayDiyaloguProps) {
       </div>
       {/*  Actions  */}
       <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
-      <button className="order-2 sm:order-1 flex-1 px-6 py-3 rounded-lg bg-surface font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant hover:bg-surface-container-low transition-colors ring-1 ring-outline-variant/20" type="button">
+      <button onClick={onayDialogunuKapat} aria-label="İptal" type="button" className="order-2 sm:order-1 flex-1 px-6 py-3 rounded-lg bg-surface font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant hover:bg-surface-container-low transition-colors ring-1 ring-outline-variant/20 cursor-pointer">
                           İptal
                       </button>
-      <button className="order-1 sm:order-2 flex-1 px-6 py-3 rounded-lg bg-error-container font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-error-container hover:brightness-110 transition-all flex justify-center items-center gap-2" type="button">
+      <button onClick={onaylaVeSifirla} aria-label="Evet, Sıfırla" type="button" className="order-1 sm:order-2 flex-1 px-6 py-3 rounded-lg bg-error-container font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-error-container hover:brightness-110 transition-all flex justify-center items-center gap-2 cursor-pointer">
       <span className="material-symbols-outlined text-sm">delete</span>
                           Evet, Sıfırla
                       </button>
