@@ -7,11 +7,15 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
-import { useState } from "react";
 
-interface AnaSayacEkraniProps {}
+import type { SayacContext } from '../types/counter';
 
-export function AnaSayacEkrani(props: AnaSayacEkraniProps) {
+interface AnaSayacEkraniProps {
+  context: SayacContext;
+}
+
+export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
+  const { state, increment, decrement, onayDialogunuAc } = context;
   return (
     <>
       {/*  TopAppBar  */}
@@ -60,8 +64,8 @@ export function AnaSayacEkrani(props: AnaSayacEkraniProps) {
       {/*  Ghost border fallback for structural feel  */}
       <div className="absolute inset-0 border border-outline-variant/15 rounded-xl pointer-events-none"></div>
       <h2 className="font-display font-bold text-[5rem] leading-none text-on-primary-container tracking-tighter drop-shadow-[0_0_20px_rgba(37,99,235,0.2)]">
-                          0
-                      </h2>
+        {state.deger}
+      </h2>
       <div className="mt-4 opacity-0">
       <span className="text-sm text-on-surface-variant">Pulse Anchor</span>
       </div>
@@ -71,13 +75,13 @@ export function AnaSayacEkrani(props: AnaSayacEkraniProps) {
       {/*  Primary Actions Grid  */}
       <div className="grid grid-cols-2 gap-4">
       {/*  Azalt (Decrease)  */}
-      <button className="bg-secondary-container text-on-secondary-container rounded-lg py-5 px-6 flex items-center justify-center gap-2 transition-all hover:brightness-125 active:scale-95 shadow-[0_4px_20px_rgba(187,1,18,0.15)] group relative overflow-hidden">
+      <button onClick={decrement} aria-label="Azalt" className="bg-secondary-container text-on-secondary-container rounded-lg py-5 px-6 flex items-center justify-center gap-2 transition-transform hover:brightness-125 active:scale-95 shadow-[0_4px_20px_rgba(187,1,18,0.15)] group relative overflow-hidden cursor-pointer">
       <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
       <span className="material-symbols-outlined text-[2rem]" style={{fontVariationSettings: "'wght' 600"}}>remove</span>
       <span className="font-label font-bold tracking-wide">Azalt</span>
       </button>
       {/*  Artır (Increase)  */}
-      <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-lg py-5 px-6 flex items-center justify-center gap-2 transition-all hover:brightness-110 active:scale-95 shadow-[0_4px_30px_rgba(37,99,235,0.3)] group relative overflow-hidden">
+      <button onClick={increment} aria-label="Artır" className="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-lg py-5 px-6 flex items-center justify-center gap-2 transition-transform hover:brightness-110 active:scale-95 shadow-[0_4px_30px_rgba(37,99,235,0.3)] group relative overflow-hidden cursor-pointer">
       <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
       <span className="material-symbols-outlined text-[2rem]" style={{fontVariationSettings: "'wght' 600"}}>add</span>
       <span className="font-label font-bold tracking-wide">Artır</span>
@@ -85,7 +89,7 @@ export function AnaSayacEkrani(props: AnaSayacEkraniProps) {
       </div>
       {/*  Secondary Action (Off-center/Asymmetric)  */}
       <div className="flex justify-end mt-2">
-      <button className="bg-surface-variant text-on-surface-variant rounded-full py-2 px-5 flex items-center gap-2 hover:bg-surface-bright transition-colors text-sm font-medium border border-outline-variant/20">
+      <button onClick={onayDialogunuAc} aria-label="Sıfırla" className="bg-surface-variant text-on-surface-variant rounded-full py-2 px-5 flex items-center gap-2 hover:bg-surface-bright transition-colors text-sm font-medium border border-outline-variant/20 cursor-pointer">
       <span className="material-symbols-outlined text-sm">restart_alt</span>
                               Sıfırla
                           </button>

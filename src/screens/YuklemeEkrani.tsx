@@ -11,7 +11,7 @@ import { useState } from "react";
 
 interface YuklemeEkraniProps {}
 
-export function YuklemeEkrani(props: YuklemeEkraniProps) {
+export function YuklemeEkrani(_props: YuklemeEkraniProps) {
   return (
     <>
       {/*  Top Navigation (Suppressed per "Transactional" rule for loading screens, but maintaining structure if needed, keeping empty for pure focus)  */}
