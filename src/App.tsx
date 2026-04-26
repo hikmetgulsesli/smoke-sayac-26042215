@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useCounter } from './hooks/useCounter';
 import { AnaSayacEkrani } from './screens/AnaSayacEkrani';
 import { YuklemeEkrani } from './screens/YuklemeEkrani';
@@ -8,7 +8,7 @@ import { SifirlamaOnayDiyalogu } from './screens/SifirlamaOnayDiyalogu';
 export default function App() {
   const counter = useCounter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     (window as unknown as Record<string, unknown>).app = {
       state: counter.state,
       counter: {

@@ -101,17 +101,17 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <nav className="md:hidden bg-[#0c1322]/40 backdrop-blur-xl fixed bottom-0 w-full z-50 shadow-[0_-4px_40px_rgba(37,99,235,0.1)]">
       <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2">
       {/*  Active Tab  */}
-      <button className="flex flex-col items-center justify-center bg-blue-600/10 text-blue-400 rounded-xl px-4 py-2 hover:text-blue-300 transition-colors scale-110 duration-150 ease-out group min-h-[44px] min-w-[44px]">
+      <button aria-label="Tally" className="flex flex-col items-center justify-center bg-blue-600/10 text-blue-400 rounded-xl px-4 py-2 hover:text-blue-300 transition-colors scale-110 duration-150 ease-out group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Tally</span>
       </button>
       {/*  Inactive Tab  */}
-      <button className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
+      <button aria-label="Logs" className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">history</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Logs</span>
       </button>
       {/*  Inactive Tab  */}
-      <button className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
+      <button aria-label="Settings" className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">tune</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Settings</span>
       </button>
