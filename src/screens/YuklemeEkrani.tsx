@@ -7,8 +7,6 @@
 // 3. Add onClick/onChange handlers to interactive elements
 // 4. Replace placeholder data with props/state
 
-import { useState } from "react";
-
 interface YuklemeEkraniProps {}
 
 export function YuklemeEkrani(_props: YuklemeEkraniProps) {
