@@ -25,24 +25,24 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <h1 className="font-['Inter'] font-bold tracking-tight text-xl font-black tracking-tighter text-blue-600 dark:text-blue-400">Obsidian Tally</h1>
       </div>
       <div className="flex items-center gap-4 hidden md:flex">
-      <button className="p-2 text-blue-400 font-bold hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+      <button aria-label="Tally" className="p-2 text-blue-400 font-bold hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
       <span className="sr-only">Tally</span>
       </button>
-      <button className="p-2 text-slate-500 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+      <button aria-label="Logs" className="p-2 text-slate-500 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined">history</span>
       <span className="sr-only">Logs</span>
       </button>
-      <button className="p-2 text-slate-500 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+      <button aria-label="Settings" className="p-2 text-slate-500 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined">settings</span>
       <span className="sr-only">Settings</span>
       </button>
       </div>
       <div className="flex items-center gap-4 md:hidden">
-      <button className="p-2 text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+      <button aria-label="Logs" className="p-2 text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined">history</span>
       </button>
-      <button className="p-2 text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+      <button aria-label="Settings" className="p-2 text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined">settings</span>
       </button>
       </div>
@@ -89,7 +89,7 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       </div>
       {/*  Secondary Action (Off-center/Asymmetric)  */}
       <div className="flex justify-end mt-2">
-      <button onClick={onayDialogunuAc} aria-label="Sıfırla" className="bg-surface-variant text-on-surface-variant rounded-full py-2 px-5 flex items-center gap-2 hover:bg-surface-bright transition-colors text-sm font-medium border border-outline-variant/20 cursor-pointer">
+      <button onClick={onayDialogunuAc} aria-label="Sıfırla" className="bg-surface-variant text-on-surface-variant rounded-full py-2 px-5 flex items-center gap-2 hover:bg-surface-bright transition-colors text-sm font-medium border border-outline-variant/20 cursor-pointer min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined text-sm">restart_alt</span>
                               Sıfırla
                           </button>
@@ -101,17 +101,17 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <nav className="md:hidden bg-[#0c1322]/40 backdrop-blur-xl fixed bottom-0 w-full z-50 shadow-[0_-4px_40px_rgba(37,99,235,0.1)]">
       <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2">
       {/*  Active Tab  */}
-      <button className="flex flex-col items-center justify-center bg-blue-600/10 text-blue-400 rounded-xl px-4 py-2 hover:text-blue-300 transition-colors scale-110 duration-150 ease-out group">
+      <button aria-label="Tally" className="flex flex-col items-center justify-center bg-blue-600/10 text-blue-400 rounded-xl px-4 py-2 hover:text-blue-300 transition-colors scale-110 duration-150 ease-out group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Tally</span>
       </button>
       {/*  Inactive Tab  */}
-      <button className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group">
+      <button aria-label="Logs" className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">history</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Logs</span>
       </button>
       {/*  Inactive Tab  */}
-      <button className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group">
+      <button aria-label="Settings" className="flex flex-col items-center justify-center text-slate-500 px-4 py-2 hover:text-blue-300 transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">tune</span>
       <span className="font-['Inter'] text-[10px] font-medium uppercase tracking-[0.05em]">Settings</span>
       </button>
