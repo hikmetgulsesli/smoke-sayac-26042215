@@ -22,7 +22,7 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <header className="bg-[var(--color-background)] docked full-width top-0 z-50">
       <div className="flex justify-between items-center w-full px-6 py-4">
       <div className="flex items-center gap-4">
-      <h1 className="font-headline font-bold tracking-tight text-xl font-black tracking-tighter text-[var(--color-primary)]">Obsidian Sayaç</h1>
+      <h1 className="font-headline font-black text-xl text-[var(--color-primary)]">Obsidian Sayaç</h1>
       </div>
       <div className="flex items-center gap-4 hidden md:flex">
       <button aria-label="Sayaç" className="p-2 text-[var(--color-primary)] font-bold hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform min-h-[44px] min-w-[44px]">
@@ -57,7 +57,7 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <div className="w-full max-w-md flex flex-col items-center relative z-10">
       {/*  Context Label  */}
       <div className="mb-4">
-      <span className="font-label text-xs font-medium uppercase tracking-[0.05em] text-on-surface-variant/70">Sayaç</span>
+      <span className="font-label text-xs font-medium uppercase tracking-[0.05em] text-[var(--color-on-surface-variant)]">Sayaç</span>
       </div>
       {/*  The Counter Monolith  */}
       <div className="bg-[var(--color-surface-container)] rounded-xl p-12 w-full flex flex-col items-center justify-center mb-8 relative">
@@ -101,17 +101,17 @@ export function AnaSayacEkrani({ context }: AnaSayacEkraniProps) {
       <nav className="md:hidden bg-[var(--color-background)]/40 backdrop-blur-xl fixed bottom-0 w-full z-50 shadow-[0_-4px_40px_color-mix(in_srgb,var(--color-primary-container)_10%,transparent)]">
       <div className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2">
       {/*  Active Tab  */}
-      <button aria-label="Sayaç" className="flex flex-col items-center justify-center bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-xl px-4 py-2 hover:text-[var(--color-primary-fixed-dim)] transition-colors scale-110 duration-150 ease-out group min-h-[44px] min-w-[44px]">
+      <button aria-label="Sayaç" className="flex flex-col items-center justify-center bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-xl px-4 py-2 hover:text-[var(--color-primary-fixed)] transition-colors scale-110 duration-150 ease-out group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1" style={{fontVariationSettings: "'FILL' 1"}}>add_circle</span>
       <span className="font-headline text-[10px] font-medium uppercase tracking-[0.05em]">Sayaç</span>
       </button>
       {/*  Inactive Tab  */}
-      <button aria-label="Kayıtlar" className="flex flex-col items-center justify-center text-[var(--color-on-surface-variant)] px-4 py-2 hover:text-[var(--color-primary-fixed-dim)] transition-colors group min-h-[44px] min-w-[44px]">
+      <button aria-label="Kayıtlar" className="flex flex-col items-center justify-center text-[var(--color-on-surface-variant)] px-4 py-2 hover:text-[var(--color-primary-fixed)] transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">history</span>
       <span className="font-headline text-[10px] font-medium uppercase tracking-[0.05em]">Kayıtlar</span>
       </button>
       {/*  Inactive Tab  */}
-      <button aria-label="Ayarlar" className="flex flex-col items-center justify-center text-[var(--color-on-surface-variant)] px-4 py-2 hover:text-[var(--color-primary-fixed-dim)] transition-colors group min-h-[44px] min-w-[44px]">
+      <button aria-label="Ayarlar" className="flex flex-col items-center justify-center text-[var(--color-on-surface-variant)] px-4 py-2 hover:text-[var(--color-primary-fixed)] transition-colors group min-h-[44px] min-w-[44px]">
       <span className="material-symbols-outlined mb-1 transition-transform group-hover:scale-110">tune</span>
       <span className="font-headline text-[10px] font-medium uppercase tracking-[0.05em]">Ayarlar</span>
       </button>
