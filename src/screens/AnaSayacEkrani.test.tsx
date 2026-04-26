@@ -29,15 +29,15 @@ describe('QA-FIX-001: AnaSayacEkrani accessibility', () => {
     buttons.forEach((btn) => {
       expect(btn.getAttribute('aria-label')).toBeTruthy();
     });
-    expect(buttons[0].getAttribute('aria-label')).toBe('Tally');
-    expect(buttons[1].getAttribute('aria-label')).toBe('Logs');
-    expect(buttons[2].getAttribute('aria-label')).toBe('Settings');
+    expect(buttons[0].getAttribute('aria-label')).toBe('Sayaç');
+    expect(buttons[1].getAttribute('aria-label')).toBe('Kayıtlar');
+    expect(buttons[2].getAttribute('aria-label')).toBe('Ayarlar');
   });
 
   it('mobile header nav buttons have aria-label', () => {
     render(<AnaSayacEkrani context={mockContext} />);
     // Mobile header buttons are inside the md:hidden div
-    const mobileButtons = screen.getAllByLabelText(/Logs|Settings/);
+    const mobileButtons = screen.getAllByLabelText(/Kayıtlar|Ayarlar/);
     expect(mobileButtons.length).toBeGreaterThanOrEqual(2);
   });
 
@@ -59,7 +59,7 @@ describe('QA-FIX-001: AnaSayacEkrani accessibility', () => {
     const { container } = render(<AnaSayacEkrani context={mockContext} />);
     const desktopHeader = container.querySelector('.hidden.md\\:flex');
     expect(desktopHeader).toBeTruthy();
-    const tallyBtn = desktopHeader!.querySelector('button[aria-label="Tally"]');
+    const tallyBtn = desktopHeader!.querySelector('button[aria-label="Sayaç"]');
     expect(tallyBtn).toBeTruthy();
     expect(tallyBtn!.className).toContain('min-h-[44px]');
     expect(tallyBtn!.className).toContain('min-w-[44px]');
