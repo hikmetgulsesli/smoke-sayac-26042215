@@ -1,0 +1,38 @@
+[
+  {
+    "screenId": "92c2453e21ee4a408e677d6c00ccc4a2",
+    "title": "Sıfırlama Onay Diyaloğu",
+    "componentName": "SifirlamaOnayDiyalogu",
+    "file": "src/screens/SifirlamaOnayDiyalogu.tsx",
+    "buttons": 4,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "f59503292a6d4b4b899eda765e04efc2",
+    "title": "Yükleme Ekranı",
+    "componentName": "YuklemeEkrani",
+    "file": "src/screens/YuklemeEkrani.tsx",
+    "buttons": 0,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "792db7a5cc2f484488712a203fb4d6ef",
+    "title": "Hata Durumu Ekranı",
+    "componentName": "HataDurumuEkrani",
+    "file": "src/screens/HataDurumuEkrani.tsx",
+    "buttons": 2,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "6f2ad21a2c33432ebe7fda1c2482d396",
+    "title": "Ana Sayaç Ekranı",
+    "componentName": "AnaSayacEkrani",
+    "file": "src/screens/AnaSayacEkrani.tsx",
+    "buttons": 11,
+    "inputs": 0,
+    "links": 0
+  }
+]
