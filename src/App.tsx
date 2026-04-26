@@ -20,7 +20,7 @@ export default function App() {
 
   if (counter.state.yukleniyor) {
     return (
-      <div className="min-h-screen bg-background text-on-surface">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-on-surface)]">
         <YuklemeEkrani />
       </div>
     );
@@ -28,14 +28,14 @@ export default function App() {
 
   if (counter.state.hata) {
     return (
-      <div className="min-h-screen bg-background text-on-surface">
+      <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-on-surface)]">
         <HataDurumuEkrani context={counter} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background text-on-surface flex flex-col">
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-on-surface)] flex flex-col">
       <AnaSayacEkrani context={counter} />
       {counter.onayGorunur && <SifirlamaOnayDiyalogu context={counter} />}
     </div>
