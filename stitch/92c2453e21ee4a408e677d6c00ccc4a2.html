@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sıfırlama Onayı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#666d7b",
+                        "inverse-on-surface": "#293040",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-container": "#eaf0ff",
+                        "tertiary-fixed": "#dce2f3",
+                        "on-error": "#690005",
+                        "surface-container-high": "#232a3a",
+                        "secondary-fixed-dim": "#ffb4ab",
+                        "on-surface": "#dce2f7",
+                        "on-primary": "#002a78",
+                        "surface-tint": "#b4c5ff",
+                        "error": "#ffb4ab",
+                        "primary": "#b4c5ff",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#0c1322",
+                        "on-surface-variant": "#c3c6d7",
+                        "surface-container-highest": "#2e3545",
+                        "secondary-fixed": "#ffdad6",
+                        "on-primary-fixed": "#00174b",
+                        "surface-bright": "#323949",
+                        "on-secondary-fixed": "#410002",
+                        "secondary": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#404754",
+                        "inverse-primary": "#0053db",
+                        "outline": "#8d90a0",
+                        "tertiary": "#c0c7d6",
+                        "surface-container": "#191f2f",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#690005",
+                        "error-container": "#93000a",
+                        "surface-dim": "#0c1322",
+                        "outline-variant": "#434655",
+                        "tertiary-fixed-dim": "#c0c7d6",
+                        "on-background": "#dce2f7",
+                        "on-secondary-fixed-variant": "#93000b",
+                        "surface-variant": "#2e3545",
+                        "secondary-container": "#bb0112",
+                        "surface-container-lowest": "#070e1d",
+                        "on-tertiary": "#2a313d",
+                        "surface": "#0c1322",
+                        "primary-container": "#2563eb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-container": "#ffc8c1",
+                        "inverse-surface": "#dce2f7",
+                        "surface-container-low": "#141b2b",
+                        "on-tertiary-fixed": "#151c27"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "display": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body text-on-background min-h-screen relative flex flex-col antialiased">
+<!-- Top Navigation (Shell suppressed due to Transactional intent - Task-Focused) -->
+<!-- Main Canvas Content (Simulated Background) -->
+<main class="flex-grow flex flex-col items-center justify-center p-6 relative z-0 opacity-40 blur-sm pointer-events-none">
+<!-- Simulated Counter App Content behind the modal -->
+<div class="flex flex-col items-center gap-12 mt-12 w-full max-w-sm">
+<div class="flex flex-col items-center">
+<span class="font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant mb-4">Total Counts</span>
+<h1 class="font-display text-[3.5rem] font-bold text-on-primary-container leading-none">1,402</h1>
+</div>
+<div class="bg-surface-container rounded-xl w-full p-8 flex flex-col items-center pt-[32px] shadow-[0_0_40px_rgba(0,42,120,0.2)]">
+<div class="flex justify-between w-full gap-6">
+<button class="bg-secondary-container text-on-secondary-container rounded-lg p-6 flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">remove</span>
+</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-lg p-6 flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay Backdrop -->
+<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 bg-surface/80 backdrop-blur-md z-40 flex items-center justify-center p-6" role="dialog">
+<!-- Modal Content Container -->
+<div class="bg-surface-container-highest rounded-xl w-full max-w-md p-8 shadow-[0_0_60px_rgba(0,42,120,0.3)] relative overflow-hidden ring-1 ring-outline-variant/15 flex flex-col gap-6 transform scale-100 opacity-100 transition-all">
+<!-- Icon/Indicator -->
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center text-error mx-auto mb-2">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<!-- Title & Description -->
+<div class="text-center flex flex-col gap-2">
+<h2 class="font-headline text-xl font-bold text-on-surface" id="modal-title">Sıfırlama Onayı</h2>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                    Sayacı sıfırlamak istediğinize emin misiniz? Bu işlem geri alınamaz ve tüm kayıtlı ilerlemeniz silinir.
+                </p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+<button class="order-2 sm:order-1 flex-1 px-6 py-3 rounded-lg bg-surface font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-surface-variant hover:bg-surface-container-low transition-colors ring-1 ring-outline-variant/20" type="button">
+                    İptal
+                </button>
+<button class="order-1 sm:order-2 flex-1 px-6 py-3 rounded-lg bg-error-container font-label text-[0.75rem] font-medium uppercase tracking-[0.05em] text-on-error-container hover:brightness-110 transition-all flex justify-center items-center gap-2" type="button">
+<span class="material-symbols-outlined text-sm">delete</span>
+                    Evet, Sıfırla
+                </button>
+</div>
+</div>
+</div>
+</body></html>

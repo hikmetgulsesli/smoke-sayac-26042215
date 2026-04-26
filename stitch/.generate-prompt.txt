@@ -1,0 +1,276 @@
+# smoke-sayac-26042215 — Ürün Gereksinimleri Dokümanı (PRD)
+
+## 1. Genel Bakış
+
+smoke-sayac-26042215, bir web tarayıcısında çalışan basit bir sayaç uygulamasıdır. Kullanıcı sayaç değerini artırabilir, azaltabilir ve sıfırlayabilir. Sayacın mevcut değeri tarayıcının localStorage'inde kalıcı olarak saklanır; sayfa yenilendiğinde veya tarayıcı kapatılıp tekrar açıldığında son değer korunur.
+
+Hedef kitle: Genel kullanıcılar — herhangi bir teknik bilgi gerektirmez. Türkçe arayüz ile yerel bir deneyim sunar.
+
+Bu proje, sistemin uçtan uca çalışıp çalışmadığını doğrulamak amacıyla tasarlanmış bir smoke test uygulamasıdır. Pipeline'ın tüm adımlarını (plan → design → stories → implement → review) provoke ederek, setfarm workflow altyapısının doğru çalıştığını teyit eder.
+
+---
+
+## 2. Hedefler
+
+- **Fonksiyonel doğruluk:** Sayaç artırma, azaltma ve sıfırlama işlemleri her koşulda doğru çalışmalıdır.
+- **Kalıcılık:** Sayac değeri localStorage'te saklanmalı; tarayıcı kapatılsa bile değer korunmalıdır.
+- **Performans:** Uygulama ilk yüklemede 2 saniyeden kısa sürede kullanıcıya hazır hissettirmelidir.
+- **Erişilebilirlik:** Klavye navigasyonu ve ekran okuyucu uyumluluğu sağlanmalıdır (WCAG 2.1 AA).
+- **Mobil uyumluluk:** 320px genişliğinden 1920px'e kadar tüm ekranlarda düzgün görüntülenmelidir.
+- **Hata dayanıklılığı:** localStorage erişimi başarısız olduğunda kullanıcıya Türkçe hata mesajı gösterilmelidir; uygulama çökmemeli, sayaç varsayılan değerle (0) çalışmaya devam etmelidir.
+
+---
+
+## 3. Tech Stack Detayı
+
+- **Framework:** React 18
+- **Build Tool:** Vite 5
+- **Programlama Dili:** TypeScript 5 (strict mode)
+- **Styling:** CSS Modules veya vanilla CSS (Tailwind kullanılmaz — bağımlılık minimal tutulur)
+- **State Yönetimi:** React useState (useReducer ile state transitions)
+- **Kalıcılık:** localStorage API (tarayıcı yerel depolama)
+- **Routing:** Yok — tek sayfa uygulaması (SPA), ekstra route gerekmez
+- **Testing:** Vitest + React Testing Library (smoke test kapsamı)
+- **Linting/Formatting:** ESLint + Prettier
+
+### Bağımlılık Listesi
+
+```json
+{
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "typescript": "^5.4.0",
+  "vite": "^5.2.0",
+  "@types/react": "^18.3.0",
+  "@types/react-dom": "^18.3.0",
+  "vitest": "^1.5.0",
+  "@testing-library/react": "^15.0.0",
+  "eslint": "^8.57.0",
+  "prettier": "^3.2.0"
+}
+```
+
+---
+
+## 4. Fonksiyonel Gereksinimler
+
+### 4.1 Sayaç Görüntüleme
+
+- Sayacın mevcut değeri ekranda büyük ve okunaklı bir şekilde görüntülenmelidir.
+- Değer 0 ile başlar (varsayılan). localStorage'te kayıtlı bir değer varsa o değerle başlar.
+- Değer negatif olabilir (azaltma işlemi sınırsızdır).
+- Sayı biçimlendirmesi: binlik ayracı yok, doğrudan tamsayı gösterimi.
+
+### 4.2 Artırma İşlemi
+
+- "+1" veya "Artır" butonu mevcut değeri 1 artırır.
+- Her artırma işlemi localStorage'e anında yazılır.
+- Başarı durumu: değer güncellenir, arayüzde anında yansır.
+- Hata durumu (localStorage yazma başarısız): konsola error log atılır, kullanıcıya gösterilmez, state yine de güncellenir.
+
+### 4.3 Azaltma İşlemi
+
+- "-1" veya "Azalt" butonu mevcut değeri 1 azaltır.
+- Negatif değerlere izin verilir (sınır yok).
+- Her azaltma işlemi localStorage'e anında yazılır.
+- Başarı durumu: değer güncellenir, arayüzde anında yansır.
+
+### 4.4 Sıfırlama İşlemi
+
+- "Sıfırla" butonu sayacı 0'a geri döndürür.
+- Kullanıcıya "Sayacı sıfırlamak istediğinize emin misiniz?" şeklinde bir onay dialogu gösterilir (tarayıcı native confirm() yeterlidir).
+- Onay alındığında değer 0 olur ve localStorage güncellenir; iptal durumunda işlem yapılmaz.
+- Başarı durumu: değer 0 olur, arayüz güncellenir.
+
+### 4.5 localStorage Entegrasyonu
+
+- **Okuma:** Sayfa yüklendiğinde `localStorage.getItem('sayac-degeri')` ile değer okunur. Değer yoksa veya geçerli bir tamsayı değilse varsayılan olarak 0 kullanılır.
+- **Yazma:** Her artırma, azaltma veya sıfırlama işleminden sonra `localStorage.setItem('sayac-degeri', String(yeniDeger))` çağrılır.
+- **Depolama anahtarı:** `sayac-degeri` (sabit, Türkçe karakter içermez, pipeline key ile uyumlu)
+
+### 4.6 Hata Mesajları (Türkçe)
+
+| Durum | Mesaj |
+|-------|-------|
+| localStorage okuma hatası | "Depolamadan değer okunamadı. Sayaç varsayılan değerle açılıyor." |
+| localStorage yazma hatası | (kullanıcıya gösterilmez, konsola log) |
+| Geçersiz stored değer | "Kayıtlı değer okunamadı, sayaç 0'dan başlıyor." |
+
+---
+
+## 5. Veri Modeli
+
+### Entity: Sayac
+
+| Alan | Tip | Açıklama |
+|------|-----|----------|
+| `deger` | `number` | Tamsayı, negatif değer alabilir |
+
+**localStorage Schema:**
+
+```
+Key: "sayac-degeri"
+Value: String (tamsayı), örn. "42", "-7", "0"
+```
+
+**Validation:** `Number.isInteger(parseInt(storedValue))` kontrolü yapılır. Geçersiz değerde varsayılan 0 kullanılır.
+
+---
+
+## 6. UI/UX Gereksinimleri
+
+### 6.1 Design System Seçimi
+
+- **Aesthetic:** Minimal — az ve net renkler, yüksek kontrast, sakin tipografi
+- **Renk Paleti:**
+
+| Rol | Hex | Kullanım |
+|-----|-----|----------|
+| Background | `#F8F9FA` | Sayfa arka planı |
+| Surface | `#FFFFFF` | Kart/panel arka planı |
+| Primary | `#2563EB` | Artı butonu, vurgu öğeleri |
+| Secondary | `#DC2626` | Azalt butonu |
+| Reset | `#6B7280` | Sıfırla butonu |
+| Text Primary | `#111827` | Sayı değeri |
+| Text Secondary | `#6B7280` | Etiket/metadata |
+| Border | `#E5E7EB` | Çerçeveler |
+| Success | `#16A34A` | Başarı feedback (kısa süreli) |
+| Error | `#DC2626` | Hata mesajları |
+
+- **Tipografi:**
+  - Heading: `Inter` (Google Fonts), ağırlık 700, sayı değeri için
+  - Body: `Inter`, ağırlık 400-500
+  - Fallback: `system-ui, -apple-system, sans-serif`
+- **Icon Library:** Lucide React — artı, eksi, yeniden başlat simgeleri
+
+### 6.2 Spacing & Components
+
+- Spacing scale: 4 / 8 / 16 / 24 / 32 / 48 / 64 px
+- Border radius: 8px (butonlar), 12px (kart)
+- Shadow: `0 1px 3px rgba(0,0,0,0.1)` (kart), `0 4px 6px rgba(0,0,0,0.1)` (hover)
+- Buton boyutları: min 44x44px touch hedef, padding 12px 24px
+- Font sizes: Sayı değeri 64px, butonlar 16px, etiket 14px
+
+### 6.3 Layout
+
+Dikey koyuluum, mobil öncelikli. Ekrana ortalı, max-width: 480px, padding: 24px.
+- < 480px: Tek sütun, artı ve azalt alt alta
+- ≥ 480px: İki sütun, artı ve azalt aynı satırda
+
+### 6.4 Responsive Breakpoints
+
+| Breakpoint | Davranış |
+|------------|----------|
+| < 480px | Tek sütun |
+| ≥ 480px | İki sütun |
+| ≥ 768px | Daha geniş padding |
+
+---
+
+## 7. Non-Functional Requirements
+
+### 7.1 Performans
+
+- **İlk yükleme:** < 1.5 saniye
+- **TTI (Time to Interactive):** < 2 saniye
+- **Bundle size:** < 100KB gzipped (hedef: ~50KB)
+- **CLS:** 0
+
+### 7.2 Erişilebilirlik (WCAG 2.1 AA)
+
+- Tüm butonlar `aria-label` ile açıklanır: "Sayacı 1 artır", "Sayacı 1 azalt", "Sayacı sıfırla"
+- Focus state: `outline: 2px solid #2563EB; outline-offset: 2px`
+- Kontrast oranı: Primary button text ≥ 4.5:1, large text ≥ 3:1
+- Touch hedefleri: minimum 44x44px
+- Klavye: Tab ile tüm butonlara erişilebilir
+
+### 7.3 Tarayıcı Desteği
+
+- Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- iOS Safari 14+, Android Chrome 90+
+
+---
+
+## 8. Proje Yapısı
+
+```
+smoke-sayac-26042215/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── Counter.tsx
+│   │   ├── Counter.module.css
+│   │   ├── Button.tsx
+│   │   └── Button.module.css
+│   ├── hooks/
+│   │   └── useCounter.ts
+│   ├── types/
+│   │   └── counter.ts
+│   ├── utils/
+│   │   └── storage.ts
+│   ├── App.tsx
+│   ├── App.css
+│   ├── main.tsx
+│   └── index.css
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── SPEC.md
+└── README.md
+```
+
+---
+
+## 9. Window State (Testing / Dogfood)
+
+```typescript
+window.app = {
+  state: 'idle',  // 'idle' | 'loading' | 'error'
+  counter: {
+    value: 0,     // number
+    error: null   // string | null
+  }
+};
+```
+
+---
+
+## 10. Ekranlar
+
+| # | Ekran Adı | Tür | Açıklama |
+|---|-----------|-----|----------|
+| 1 | Ana Sayaç Ekranı | main | Artı, azalt, sıfırla butonları ve sayaç değeri. Tek sayfa, tüm işlevsellik burada. |
+| 2 | Hata Durumu Ekranı | error | localStorage erişilemez olduğunda gösterilen Türkçe hata mesajı. Fallback ile sayaç 0'dan çalışmaya devam eder. |
+| 3 | Yükleme Durumu | loading | Sayfa ilk açıldığında değer okunurken kısa bir yükleme göstergesi. Değer okunduktan sonra ana ekrana geçer. |
+
+---
+
+## 11. Kabul Kriterleri
+
+1. Sayfa açıldığında sayaç değeri görünür ve 0 veya kayıtlı değer olarak gösterilir.
+2. `+1` butonuna tıklandığında değer 1 artar ve localStorage güncellenir.
+3. `-1` butonuna tıklandığında değer 1 azalır ve localStorage güncellenir.
+4. `Sıfırla` butonuna tıklanıp onay verildiğinde değer 0 olur ve localStorage güncellenir.
+5. Sayfa yenilendiğinde son değer korunur.
+6. Klavye ile tüm butonlara erişilebilir ve tetiklenebilir.
+7. Ekran okuyucu ile sayaç değeri ve butonlar okunabilir.
+8. 320px genişlikte butonlar düzgün görüntülenir.
+9. localStorage hatası durumunda uygulama crash olmaz.
+10. Build başarılı olur (`npm run build`) ve `dist/` klasörü oluşur.
+
+---
+
+*PRD Sürümü: 1.0 — 2026-04-26 — setfarm pipeline feature-dev/planner*
+
+Generate a SEPARATE screen design for EVERY page, view, modal, dialog, tab panel, and settings screen described in this PRD. Do NOT skip ANY screen — even if it seems minor.
+
+MANDATORY SCREENS:
+- If the PRD mentions "settings" or "ayarlar" → generate a Settings screen
+- If the PRD mentions tabs or bottom navigation → generate EACH tab view as a separate screen
+- If the PRD mentions modals (statistics, help, share, confirmation) → generate each as a separate screen
+- If the PRD mentions error states, empty states, loading states → generate those too
+- Generate at least as many screens as there are distinct views/pages/modals in the PRD
+
+All visible text must be in Turkish. Use a dark, modern theme.
