@@ -56,10 +56,13 @@ describe('QA-FIX-001: AnaSayacEkrani accessibility', () => {
   });
 
   it('header nav buttons have min-h-[44px] class for touch target', () => {
-    render(<AnaSayacEkrani context={mockContext} />);
-    const tallyBtn = screen.getByLabelText('Tally');
-    expect(tallyBtn.className).toContain('min-h-[44px]');
-    expect(tallyBtn.className).toContain('min-w-[44px]');
+    const { container } = render(<AnaSayacEkrani context={mockContext} />);
+    const desktopHeader = container.querySelector('.hidden.md\\:flex');
+    expect(desktopHeader).toBeTruthy();
+    const tallyBtn = desktopHeader!.querySelector('button[aria-label="Tally"]');
+    expect(tallyBtn).toBeTruthy();
+    expect(tallyBtn!.className).toContain('min-h-[44px]');
+    expect(tallyBtn!.className).toContain('min-w-[44px]');
   });
 
   it('bottom nav buttons have min-h-[44px] class for touch target', () => {
